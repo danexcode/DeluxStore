@@ -3,7 +3,7 @@ import { LiaBarsSolid, LiaBell, LiaShoppingCartSolid, LiaUser } from 'react-icon
 
 export default function Header() {
   return (
-    <header className="flex bg-white fixed w-full items-center justify-between py-5 px-12 shadow-md">
+    <header className="flex z-10 bg-white fixed w-full items-center justify-between py-5 px-12 shadow-md">
       <Link to="/" className="text-2xl font-bold text-font">
         Delux<span className="text-primary">Shop</span>
       </Link>
@@ -18,7 +18,7 @@ export default function Header() {
           <LiaUser className="text-2xl cursor-pointer" />
         </span>
       </div>
-      <div className="hidden max-md:block">
+      <div className="md:hidden">
         <i>
           <LiaBarsSolid className="text-2xl" />
         </i>

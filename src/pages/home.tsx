@@ -1,30 +1,26 @@
-import { LiaArrowRightSolid } from "react-icons/lia";
+import Hero from "@/components/Hero";
+import ProductCard from "@/components/ProductCard";
 
 export default function Home() {
   return (
     <>
-      <section className="bg-white text-font h-screen grid md:grid-cols-2 w-full justify-center px-24 items-center ">
-        <section className="">
-          <h1 className="text-6xl font-extrabold">Tecnología que te inspira</h1>
-          <p className="text-xl font-light my-8">
-            {' '}
-            Descubre las últimas novedades y encuentra el producto perfecto para
-            ti.
-          </p>
-          <button className="bg-primary flex items-center gap-2 py-3 px-6 cursor-pointer rounded-md shadow-md text-white text-xl">
-            Shop now  
-            <LiaArrowRightSolid className="inline" />
-          </button>
-        </section>
-        <figure className="flex justify-center max-md:hidden">
-          <img
-            className="cursor-pointer rounded-4xl shadow-md w-[75%] h-[75%] hover:scale-105 ease-in-out duration-200"
-            src="/public/images/Hero-Image.png"
-            alt="Desktop Monitor"
-          />
-        </figure>
+      <Hero />
+
+      {/* Trends */}
+      <section className="bg-neutral-50 h-screen px-10 py-16 text-neutral-900 flex flex-col items-center">
+        <h2 className="text-6xl font-extrabold">Innovación a tu alcance</h2>
+        <p className="py-4 text-neutral-600">Explora nuestra amplia selección de productos y encuentra la tecnología que te hará la vida más fácil.</p>
+
+        <article className="grid grid-cols-4 w-full h-full gap-4 mt-6">
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+        </article>
       </section>
-      Home Page
+      <section className="bg-contrast h-[50vh]">
+
+      </section>
     </>
   );
 }
