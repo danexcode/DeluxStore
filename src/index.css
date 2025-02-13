@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: oklch(50.82% 0.076 119.86);
+  --color-primary-dark: oklch(31.18% 0.053 129.56);
+  --color-contrast: oklch(98.14% 0.034 99.83);
+  --color-secondary: oklch(75.25% 0.110 67.83);
+  --color-secondary-dark: oklch(60.94% 0.130 57.35);
+  --color-font: oklch(24.78% 0.000 0)
+
+  --font-playfair: Playfair Roboto;
+  --font-roboto-slab: Roboto Slab;
+}
