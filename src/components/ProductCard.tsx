@@ -1,9 +1,9 @@
 export default function ProductCard() {
   return (
-    <div className="rounded-lg shadow-md bg-white p-4 pb-6 cursor-pointer">
-      <figure>
+    <div className="rounded-lg shadow-md bg-white p-4 pb-6">
+      <figure className="overflow-hidden cursor-pointer">
         <img
-          className="h-[207px] w-full object-cover rounded-lg"
+          className="h-[207px] w-full object-cover rounded-lg hover:scale-110 duration-200 ease-in-out"
           src="/public/images/Hero-Image.png"
           alt="Product"
         />

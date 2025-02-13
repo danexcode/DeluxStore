@@ -11,3 +11,7 @@
   --font-playfair: Playfair Roboto;
   --font-roboto-slab: Roboto Slab;
 }
+
+.mygrid {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}

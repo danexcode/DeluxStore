@@ -1,4 +1,4 @@
-import { LiaArrowRightSolid } from "react-icons/lia";
+import { LiaArrowRightSolid } from 'react-icons/lia';
 
 export default function Hero() {
   return (

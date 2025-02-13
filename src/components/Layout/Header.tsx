@@ -3,7 +3,10 @@ import { LiaBarsSolid, LiaBell, LiaShoppingCartSolid, LiaUser } from 'react-icon
 
 export default function Header() {
   return (
-    <header className="flex z-10 bg-white fixed w-full items-center justify-between py-5 px-12 shadow-md">
+    <header className="flex z-10 bg-white fixed w-full items-center justify-between py-5 px-4 md:px-12 shadow-md">
+      <Link to="/" className="hidden">
+        <img className="w-10 h-10" src="/public/favicon.ico" alt="Logo" />
+      </Link>
       <Link to="/" className="text-2xl font-bold text-font">
         Delux<span className="text-primary">Shop</span>
       </Link>
