@@ -6,7 +6,8 @@
   --color-contrast: oklch(98.14% 0.034 99.83);
   --color-secondary: oklch(75.25% 0.110 67.83);
   --color-secondary-dark: oklch(60.94% 0.130 57.35);
-  --color-font: oklch(24.78% 0.000 0)
+  --color-auxiliar: oklch(85.32% 0.161 84.85);
+  --color-font: oklch(24.78% 0.000 0);
 
   --font-playfair: Playfair Roboto;
   --font-roboto-slab: Roboto Slab;
@@ -14,4 +15,12 @@
 
 .mygrid {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+#products::before {
+  content: "";
+  display: block;
+  height: 74px; /* Altura del header */
+  margin-top: -74px; /* Margen negativo para compensar */
+  visibility: hidden; /* Opcional: para que no ocupe espacio visualmente */
 }
