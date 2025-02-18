@@ -1,8 +1,11 @@
 import Hero from '@/components/Hero';
 import ProductCard from '@/components/ProductCard';
 import { pageAtom, productsAtom } from '@/services/products';
-import { Product } from '@/types';
+import { Category, Product } from '@/types';
 import { useAtom } from 'jotai';
+import { Link } from 'react-router-dom';
+
+const URL_PRODUCTS_BY_CATEGORY = "/products?category=";
 
 export default function Home() {
   const [{ data: products, isPending, isError }] = useAtom(productsAtom);
@@ -10,6 +13,10 @@ export default function Home() {
 
   const handleLoadMoreProducts = () => {
     setPage(page + 1);
+    const destino = document.getElementById("products")
+    if (destino) {
+      window.scrollTo({ top: destino.offsetTop })
+    }
   };
 
   return (
@@ -24,7 +31,7 @@ export default function Home() {
           tecnología que te hará la vida más fácil.
         </p>
         <section className="grid grid-cols-2 max-md:grid-cols-1 w-[80%] min-h-64 gap-8 mt-6 justify-items-center">
-          <div className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
+          <Link to={`${URL_PRODUCTS_BY_CATEGORY}${Category.TV}`} className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
             <h4 className="absolute text-lg font-bold text-white lg:top-2 left-4 max-lg:bottom-2">
               TV's
             </h4>
@@ -36,8 +43,9 @@ export default function Home() {
               src="/images/visual-desktop.webp"
               alt="TV"
             />
-          </div>
-          <div className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
+          </Link>
+
+          <Link to={`${URL_PRODUCTS_BY_CATEGORY}${Category.AUDIO}`} className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
             <h4 className="absolute text-lg font-bold text-white lg:top-2 left-4 max-lg:bottom-2">
               Audio
             </h4>
@@ -49,8 +57,9 @@ export default function Home() {
               src="/images/audio.webp"
               alt="TV"
             />
-          </div>
-          <div className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
+          </Link>
+
+          <Link to={`${URL_PRODUCTS_BY_CATEGORY}${Category.MOBILE}`} className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
             <h4 className="absolute text-lg font-bold text-white lg:top-2 left-4 max-lg:bottom-2">
               Smartphones
             </h4>
@@ -62,8 +71,9 @@ export default function Home() {
               src="/images/phone-2.webp"
               alt="TV"
             />
-          </div>
-          <div className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
+          </Link>
+
+          <Link to={`${URL_PRODUCTS_BY_CATEGORY}${Category.GAMING}`} className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
             <h4 className="absolute text-lg font-bold text-white lg:top-2 left-4 max-lg:bottom-2">
               Gaming
             </h4>
@@ -75,13 +85,13 @@ export default function Home() {
               src="/images/gaming.webp"
               alt="TV"
             />
-          </div>
+          </Link>
         </section>
       </section>
 
       <section
         id="products"
-        className="bg-white px-4 md:px-[150px] py-16 flex flex-col gap-5 items-center text-neutral-900"
+        className="header-correction bg-white px-4 md:px-[150px] py-16 flex flex-col gap-5 items-center text-neutral-900"
       >
         <h3 className="text-4xl font-bold text-center">
           Calidad, variedad y los mejores precios en un solo lugar.

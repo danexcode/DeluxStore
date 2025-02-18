@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "@/components/Layout/Layout";
 import Home from "@/pages/home";
-import Search from "@/pages/search";
 import NotFound from "@/pages/not_found";
+import Products from "@/pages/products";
 
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Layout />} >
         <Route index element={<Home />} ></Route>
-        <Route path="/search/" element={<Search />} ></Route>
+        <Route path="products" element={<Products />} ></Route>
       </Route>
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
