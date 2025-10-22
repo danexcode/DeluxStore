@@ -26,3 +26,15 @@ export enum Category {
   GAMING = "gaming",
   APPLIANCES = "appliances",
 }
+
+export interface QueryParams {
+  search?: string;
+  category?: string;
+  limit?: string;
+  page?: string;
+}
+
+export interface ProductCart {
+  product: Product;
+  amount: number;
+}

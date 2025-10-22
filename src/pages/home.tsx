@@ -1,23 +1,17 @@
 import Hero from '@/components/Hero';
 import ProductCard from '@/components/ProductCard';
-import { pageAtom, productsAtom } from '@/services/products';
+import { productsAtom } from '@/services/products';
 import { Category, Product } from '@/types';
 import { useAtom } from 'jotai';
 import { Link } from 'react-router-dom';
 
-const URL_PRODUCTS_BY_CATEGORY = "/products?category=";
+const URL_PRODUCTS_BY_CATEGORY = '/products?category=';
 
 export default function Home() {
-  const [{ data: products, isPending, isError }] = useAtom(productsAtom);
-  const [page, setPage] = useAtom(pageAtom);
+  const [{ data, isPending, isError, fetchNextPage }] =
+    useAtom(productsAtom);
 
-  const handleLoadMoreProducts = () => {
-    setPage(page + 1);
-    const destino = document.getElementById("products")
-    if (destino) {
-      window.scrollTo({ top: destino.offsetTop })
-    }
-  };
+  const products = data?.pages.flatMap(page => page) ?? []
 
   return (
     <>
@@ -25,13 +19,18 @@ export default function Home() {
 
       {/* Categories */}
       <section className="bg-neutral-50 px-10 py-16 text-neutral-900 flex flex-col items-center">
-        <h2 className="text-6xl font-extrabold">Innovación a tu alcance</h2>
+        <h2 className="text-4xl md:text-6xl font-extrabold">
+          Innovación a tu alcance
+        </h2>
         <p className="py-4 text-neutral-600">
           Explora nuestra amplia selección de productos y encuentra la
           tecnología que te hará la vida más fácil.
         </p>
         <section className="grid grid-cols-2 max-md:grid-cols-1 w-[80%] min-h-64 gap-8 mt-6 justify-items-center">
-          <Link to={`${URL_PRODUCTS_BY_CATEGORY}${Category.TV}`} className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
+          <Link
+            to={`${URL_PRODUCTS_BY_CATEGORY}${Category.TV}`}
+            className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative"
+          >
             <h4 className="absolute text-lg font-bold text-white lg:top-2 left-4 max-lg:bottom-2">
               TV's
             </h4>
@@ -45,7 +44,10 @@ export default function Home() {
             />
           </Link>
 
-          <Link to={`${URL_PRODUCTS_BY_CATEGORY}${Category.AUDIO}`} className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
+          <Link
+            to={`${URL_PRODUCTS_BY_CATEGORY}${Category.AUDIO}`}
+            className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative"
+          >
             <h4 className="absolute text-lg font-bold text-white lg:top-2 left-4 max-lg:bottom-2">
               Audio
             </h4>
@@ -59,7 +61,10 @@ export default function Home() {
             />
           </Link>
 
-          <Link to={`${URL_PRODUCTS_BY_CATEGORY}${Category.MOBILE}`} className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
+          <Link
+            to={`${URL_PRODUCTS_BY_CATEGORY}${Category.MOBILE}`}
+            className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative"
+          >
             <h4 className="absolute text-lg font-bold text-white lg:top-2 left-4 max-lg:bottom-2">
               Smartphones
             </h4>
@@ -73,7 +78,10 @@ export default function Home() {
             />
           </Link>
 
-          <Link to={`${URL_PRODUCTS_BY_CATEGORY}${Category.GAMING}`} className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative">
+          <Link
+            to={`${URL_PRODUCTS_BY_CATEGORY}${Category.GAMING}`}
+            className="cursor-pointer w-full h-auto rounded-md bg-white shadow-md overflow-hidden relative"
+          >
             <h4 className="absolute text-lg font-bold text-white lg:top-2 left-4 max-lg:bottom-2">
               Gaming
             </h4>
@@ -96,7 +104,7 @@ export default function Home() {
         <h3 className="text-4xl font-bold text-center">
           Calidad, variedad y los mejores precios en un solo lugar.
         </h3>
-        <ul className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] w-full h-full gap-16 pt-10 items-end">
+        <ul className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] w-full h-full gap-16 pt-10 items-center">
           {isPending && <p>Cargando...</p>}
           {isError && <p>Ocurrió un error</p>}
           {products?.map((product: Product) => (
@@ -104,7 +112,7 @@ export default function Home() {
           ))}
         </ul>
         <button
-          onClick={handleLoadMoreProducts}
+          onClick={() => fetchNextPage()}
           className="py-2 px-4 rounded-md shadow bg-primary text-white cursor-pointer "
         >
           Cargar más

@@ -2,12 +2,16 @@
 
 @theme {
   --color-primary: oklch(50.82% 0.076 119.86);
-  --color-primary-dark: oklch(31.18% 0.053 129.56);
+  --color-primary-light: oklch(57.57% 0.076 119.86);
+  --color-primary-dark: oklch(44.51% 0.076 119.86);
   --color-contrast: oklch(98.14% 0.034 99.83);
   --color-secondary: oklch(75.25% 0.110 67.83);
   --color-secondary-dark: oklch(60.94% 0.130 57.35);
   --color-auxiliar: oklch(85.32% 0.161 84.85);
+  --color-aaaa: oklch(92.79% 0.1949 113.82);
   --color-font: oklch(24.78% 0.000 0);
+
+  --color-modal: oklch(13.09% 0 212 / 40%);
 
   --font-playfair: Playfair Roboto;
   --font-roboto-slab: Roboto Slab;

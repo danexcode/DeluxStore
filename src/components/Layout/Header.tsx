@@ -1,4 +1,4 @@
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   LiaBarsSolid,
   LiaBell,
@@ -6,12 +6,15 @@ import {
   LiaUser,
 } from 'react-icons/lia';
 import { ChangeEvent, useRef, useState } from 'react';
+import { useAtomValue } from 'jotai';
+import { cartAtom } from '@/store/global';
 
 export default function Header() {
   const navigate = useNavigate();
   const inputSearchRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
+  const cart = useAtomValue(cartAtom);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,21 +25,21 @@ export default function Header() {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
-    setSearchParams({ 
-      ...Object.fromEntries(searchParams), 
+    setSearchParams({
+      ...Object.fromEntries(searchParams),
       search: newValue,
     });
   };
 
   return (
     <header className=" flex z-10 bg-slate-50 fixed w-full items-center justify-between py-4 px-4 md:px-12 shadow-md">
-      <Link to="/" className="w-12 h-12 md:hidden">
+      <a href="/" className="w-12 h-12 md:hidden">
         <img src="/favicon.ico" alt="Logo" />
-      </Link>
+      </a>
 
-      <Link to="/" className="text-2xl font-bold text-font max-md:hidden">
+      <a href="/" className="text-2xl font-bold text-font max-md:hidden">
         Delux<span className="text-primary">Shop</span>
-      </Link>
+      </a>
 
       <form onSubmit={handleSearch} className="xl:w-[700px]">
         <input
@@ -55,8 +58,13 @@ export default function Header() {
         <i>
           <LiaBell className="text-2xl cursor-pointer" />
         </i>
-        <i>
-          <LiaShoppingCartSolid className="text-2xl cursor-pointer" />
+        <i className="relative cursor-pointer">
+          <LiaShoppingCartSolid className="text-2xl" />
+          {cart.length > 0 && (
+            <div className="absolute top-[-5px] right-[-5px] bg-primary rounded-full text-white w-4 h-4 flex justify-center items-center font-normal not-italic text-xs">
+              {cart.length}
+            </div>
+          )}
         </i>
         <span>
           <LiaUser className="text-2xl cursor-pointer" />
